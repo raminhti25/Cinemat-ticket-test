@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateTicketRequest;
 use App\Interfaces\TicketRepositoryInterface;
 
 class TicketController extends Controller
@@ -15,10 +15,18 @@ class TicketController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param CreateTicketRequest $request
+     * @param int $movie_id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTicketRequest $request, int $movie_id)
     {
-        $ticket = $this->repository->store($request->all());
+        $data = $request->all();
+
+        $data['movie_id'] = $movie_id;
+
+        $ticket = $this->repository->store($data);
+
+        return response(['data' => $ticket, 'message' => trans('messages.created')], 201);
     }
 }

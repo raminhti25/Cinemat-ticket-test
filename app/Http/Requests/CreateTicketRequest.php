@@ -13,7 +13,7 @@ class CreateTicketRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class CreateTicketRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'seat_id' => 'required|exists:seats,id'
         ];
     }
 }

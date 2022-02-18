@@ -18,4 +18,15 @@ class SeatRepository implements SeatRepositoryInterface
 
         return $seats;
     }
+
+    public function showReservedSeats()
+    {
+        $seats = Seat::has('tickets')->withCount('tickets');
+
+        $seats = $seats->paginate($data['per_page'] ?? 10, '*', 'page', $data['page'] ?? 1);
+
+        $seats = $seats->select('number ad seat_number', '')
+
+        return $seats;
+    }
 }
