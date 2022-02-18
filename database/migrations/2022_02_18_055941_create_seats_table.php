@@ -15,6 +15,7 @@ class CreateSeatsTable extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->id();
+            $table->unsignedSmallInteger('number')->unique();
             $table->timestamps();
         });
     }
