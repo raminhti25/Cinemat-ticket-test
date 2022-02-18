@@ -14,7 +14,7 @@ class Seats extends Seeder
      */
     public function run()
     {
-        Seat::insert(
+        Seat::insert([
             ['number' => 20],
             ['number' => 21],
             ['number' => 22],
@@ -26,6 +26,6 @@ class Seats extends Seeder
             ['number' => 28],
             ['number' => 29],
             ['number' => 30]
-        );
+        ]);
     }
 }
