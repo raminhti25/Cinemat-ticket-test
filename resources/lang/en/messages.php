@@ -14,4 +14,9 @@ return [
     */
 
     'created' => 'Created successfully',
+    'login_successfully' => 'Login successfully',
+
+    'errors' => [
+        'wrong_credentials' => 'Credentials not match'
+    ]
 ];
