@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\SeatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,11 @@ use App\Http\Controllers\MovieController;
 |
 */
 
-Route::get('/',[MovieController::class,'index'])->name('index');
+
+Route::group(['as' => 'movies.', 'prefix' => '/movies'], function () {
+    Route::get('/',[MovieController::class,'index'])->name('index');
+    Route::get('/{id}/open/seats',[SeatController::class,'showMovieEmptySeats'])->name('showMovieEmptySeats');
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

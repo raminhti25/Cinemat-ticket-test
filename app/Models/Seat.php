@@ -10,4 +10,9 @@ class Seat extends Model
     use HasFactory;
 
     protected $fillable = ['number'];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
