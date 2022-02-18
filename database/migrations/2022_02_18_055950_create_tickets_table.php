@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateTicketsTable extends Migration
 {
@@ -15,6 +15,9 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->default(0);
+            $table->integer('movie_id')->default(0);
+            $table->integer('seat_id')->default(0);
             $table->timestamps();
         });
     }
