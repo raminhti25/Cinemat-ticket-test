@@ -25,4 +25,14 @@ class SeatController extends Controller
 
         return response($seats);
     }
+
+    /**
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     */
+    public function showReservedSeats()
+    {
+        $seats = $this->repository->showReservedSeats();
+
+        return response($seats);
+    }
 }

@@ -25,7 +25,7 @@ class SeatRepository implements SeatRepositoryInterface
 
         $seats = $seats->paginate($data['per_page'] ?? 10, '*', 'page', $data['page'] ?? 1);
 
-        $seats = $seats->select('number ad seat_number', '')
+        $seats = $seats->select('number ad seat_number', 'tickets_count as total');
 
         return $seats;
     }

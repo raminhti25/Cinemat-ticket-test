@@ -20,16 +20,14 @@ use App\Http\Controllers\LoginController;
 
 Route::post('/login',[LoginController::class,'login'])->name('login');
 
-
 Route::group(['as' => 'movies.', 'prefix' => '/movies'], function () {
     Route::get('/',[MovieController::class,'index'])->name('index');
 
+    Route::post('/{id}/tickets',[TicketController::class,'store'])
+        ->name('store')
+        ->where('id', '[0-9]+')
+        ->middleware('auth:sanctum');
+
     Route::get('/reserved/seats',[SeatController::class,'showReservedSeats'])->name('show_reserved_seats');
     Route::get('/{id}/open/seats',[SeatController::class,'showMovieEmptySeats'])->name('show_movie_empty_seats')->where('id', '[0-9]+');
-
-    Route::post('/{id}/tickets',[TicketController::class,'store'])->name('store')->where('id', '[0-9]+');
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
 });

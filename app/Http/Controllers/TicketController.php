@@ -24,6 +24,7 @@ class TicketController extends Controller
         $data = $request->all();
 
         $data['movie_id'] = $movie_id;
+        $data['user_id']  = auth()->user()->id;
 
         $ticket = $this->repository->store($data);
 
